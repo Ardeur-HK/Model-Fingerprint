@@ -59,7 +59,8 @@ def load_model_and_tokenizer(model_path, load_in_4bit=False, load_in_8bit=False,
             adapter_path = os.path.join(model_path, 'instruction_emb.pt')
         print("Loading from", adapter_path)
         from adapter import inject_adapter_to
-        instruction_emb = torch.load(adapter_path)
+        # PyTorch 2.6+ defaults to weights_only=True which blocks class pickles; allow safe load from trusted source
+        instruction_emb = torch.load(adapter_path, weights_only=False)
         model = inject_adapter_to(model, instruction_emb.all_trainable_input_ids, instruction_emb)
 
     if user_model is not None:

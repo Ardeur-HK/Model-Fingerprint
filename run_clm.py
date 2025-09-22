@@ -490,10 +490,11 @@ def main():
             )
     if model_args.freeze_instruction_nonembedding:
         from adapter import inject_adapter_to
-        list_of_input_ids = tokenizer(raw_datasets["train"]["instruction"])["input_ids"]
+        # Ensure tokenizer receives a List[str] instead of a dataset column object
+        list_of_input_ids = tokenizer(list(raw_datasets["train"]["instruction"]))["input_ids"]
         all_trainable_input_ids = set(
             t for input_ids in list_of_input_ids for t in input_ids)
-        list_of_input_ids = tokenizer(raw_datasets["train"]["input"])["input_ids"]
+        list_of_input_ids = tokenizer(list(raw_datasets["train"]["input"]))["input_ids"]
         all_trainable_input_ids.union(set(
             t for input_ids in list_of_input_ids for t in input_ids))
         model = inject_adapter_to(model, all_trainable_input_ids, inner_dim=model_args.instruction_nonembedding_dim)
