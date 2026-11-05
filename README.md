@@ -1,4 +1,9 @@
 # Instructional Fingerprinting
+
+> **Maintenance and reproduction fork.** The fingerprinting method, paper, model releases, and bundled `harmlessness_eval/` results are from [cnut1648/Model-Fingerprint](https://github.com/cnut1648/Model-Fingerprint). Puhao Zheng (`Ardeur-HK`) contributes the local compatibility and token-selection changes described in [contributions](docs/contributions.md). Bundled upstream scores are not personal reproduction results.
+>
+> Start with the [offline maintenance Quick Start](docs/quickstart.md). The original authors' documentation is retained below; its hardware timings and experimental results refer to the upstream work.
+
 <div align="center">
 <strong><h3><a href="https://arxiv.org/abs/2401.12255">Instructional Fingerprinting of Large Language Models</a></h3></strong>
 </div>
